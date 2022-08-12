@@ -5,7 +5,7 @@ function Form() {
   const [state, setState] = useState({username: "", password: ""})
   const [isActive, setIsActive] = useState(false);
 
-  const correctUser = "Kasper"
+  const correctUser = "Kasper";
   const correctPassword = "test123";
 
   function handleChange(e) {
@@ -14,21 +14,20 @@ function Form() {
       ...state,
       [e.target.name]: value
     });
-
     e.preventDefault();
   }
 
   //SECURITY CHECKS
 
   //Prevent XSS attack
-  function preventXSS(toOutput){
-    return toOutput.replace(/\&/g, '&amp;')
-        .replace(/\</g, '&lt;')
-        .replace(/\>/g, '&gt;')
-        .replace(/\"/g, '&quot;')
-        .replace(/\'/g, '&#x27')
-        .replace(/\//g, '&#x2F');
-  }
+  function escapeHTML(txt) {
+    return txt
+         .replace(/&/g, "")
+         .replace(/</g, "")
+         .replace(/>/g, "")
+         .replace(/"/g, "")
+         .replace(/'/g, "");
+    }
 
   function handleClick(e) {
     
@@ -64,7 +63,7 @@ function Form() {
           <input
             type="text"
             name="username"
-            value={state.username}
+            value={escapeHTML(state.username)}
             onChange={handleChange}
           />
         </label>
@@ -75,7 +74,7 @@ function Form() {
           <input
             type="password"
             name="password"
-            value={state.password}
+            value={escapeHTML(state.password)}
             onChange={handleChange}
           />
         </label>
