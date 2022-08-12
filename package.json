@@ -1,5 +1,6 @@
 {
-  "name": "my-app",
+  "homepage": "https://kaspem.github.io/ReactTesting"
+  "name": "ReactTesting",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
